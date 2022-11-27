@@ -63,4 +63,5 @@ include 'tuling-boot'
 include 'tuling-vip-demo'
 include 'spring-tuling-webmvc'
 include 'spring-tuling-boot'
+include 'yohan'
 
