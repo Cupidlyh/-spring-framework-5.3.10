@@ -8,9 +8,9 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("hello spring");
 
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class, AppConfig.class);
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 		MyService myService = (MyService) applicationContext.getBean("myService");
 
- 		myService.introduce();
+ 		myService.introduceMyService();
 	}
 }
