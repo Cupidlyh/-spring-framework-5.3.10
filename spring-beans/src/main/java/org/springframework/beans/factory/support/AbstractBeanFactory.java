@@ -301,6 +301,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			}
 
 			if (!typeCheckOnly) {
+				// 将当前创建的beanName保存到alreadyCreated集合中
 				markBeanAsCreated(beanName);
 			}
 
