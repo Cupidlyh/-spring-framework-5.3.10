@@ -567,9 +567,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (instanceWrapper == null) {
 			// 创建Bean实例
+			// 默认使用无参构造方法，最后对象的创建是newInstance来创建
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
+		// 获取bean实例
 		Object bean = instanceWrapper.getWrappedInstance();
+		// 获取bean类型
 		Class<?> beanType = instanceWrapper.getWrappedClass();
 		if (beanType != NullBean.class) {
 			mbd.resolvedTargetType = beanType;
@@ -1428,6 +1431,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
 
+		// 自动装配 ：根据名称或类型自动注入
 		int resolvedAutowireMode = mbd.getResolvedAutowireMode();
 		if (resolvedAutowireMode == AUTOWIRE_BY_NAME || resolvedAutowireMode == AUTOWIRE_BY_TYPE) {
 			// MutablePropertyValues是PropertyValues具体的实现类
@@ -1451,6 +1455,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (pvs == null) {
 				pvs = mbd.getPropertyValues();
 			}
+			// 成员变量的注入
 			for (InstantiationAwareBeanPostProcessor bp : getBeanPostProcessorCache().instantiationAware) {
 				// 这里会调用AutowiredAnnotationBeanPostProcessor的postProcessProperties()方法，会直接给对象中的属性赋值
 				// AutowiredAnnotationBeanPostProcessor内部并不会处理pvs，直接返回了
@@ -1476,6 +1481,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// 如果当前Bean中的BeanDefinition中设置了PropertyValues，那么最终将是PropertyValues中的值，覆盖@Autowired
 		if (pvs != null) {
+			// 将属性应用到bean中
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
