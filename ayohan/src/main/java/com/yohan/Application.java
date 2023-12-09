@@ -3,7 +3,7 @@ package com.yohan;
 import com.yohan.service.MyService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Test {
+public class Application {
 
 	public static void main(String[] args) {
 		System.out.println("hello spring");
