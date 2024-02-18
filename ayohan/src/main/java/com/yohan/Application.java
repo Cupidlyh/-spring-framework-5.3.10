@@ -1,16 +1,27 @@
 package com.yohan;
 
-import com.yohan.service.MyService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.yohan.service.MyClassPathXmlService;
 
 public class Application {
 
-	public static void main(String[] args) {
-		System.out.println("hello spring");
+    public static void main(String[] args) {
+        System.out.println("hello spring");
 
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-		MyService myService = (MyService) applicationContext.getBean("myService");
+        // AnnotationConfigApplicationContext annotationConfigApplicationContext =
+        // new AnnotationConfigApplicationContext(AppConfig.class);
+        //
+        // MyService myService = (MyService)annotationConfigApplicationContext.getBean("myService");
+        //
+        // myService.introduceMyService();
 
- 		myService.introduceMyService();
-	}
+        System.out.println("------------------------------------");
+
+        ClassPathXmlApplicationContext classPathXmlApplicationContext =
+            new ClassPathXmlApplicationContext("config.xml");
+        MyClassPathXmlService myClassPathXmlService =
+            classPathXmlApplicationContext.getBean(MyClassPathXmlService.class);
+        myClassPathXmlService.introduceMyClassPathXmlService();
+    }
 }
