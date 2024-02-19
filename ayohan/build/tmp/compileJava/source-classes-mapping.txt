@@ -4,7 +4,7 @@ com/yohan/dao/MyServiceDao.java
  com.yohan.dao.MyServiceDao
 com/yohan/AppConfig.java
  com.yohan.AppConfig
-com/yohan/Application.java
- com.yohan.Application
 com/yohan/service/MyClassPathXmlService.java
  com.yohan.service.MyClassPathXmlService
+com/yohan/Application.java
+ com.yohan.Application
