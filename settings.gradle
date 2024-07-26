@@ -1,7 +1,20 @@
 pluginManagement {
 	repositories {
+		//从maven本地仓库下载jar到gradle仓库
+		mavenLocal()
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven { url 'https://maven.aliyun.com/repository/grails-core' }
+		maven { url 'https://maven.aliyun.com/repository/google/' }
+		maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+		maven { url "https://mvn.getui.com/nexus/content/repositories/releases/" }
+		maven {
+			url 'http://mirrors.huaweicloud.com/repository/maven/'
+			allowInsecureProtocol = true
+		}
+		maven { url 'https://repo.spring.io/milestone' }
+		maven { url 'https://repo.spring.io/snapshot' }
+		mavenCentral() //maven中央仓库
 		gradlePluginPortal()
-		maven { url 'https://repo.spring.io/plugins-release' }
 	}
 }
 
