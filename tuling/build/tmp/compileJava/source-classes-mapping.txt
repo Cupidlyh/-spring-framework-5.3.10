@@ -1,3 +1,5 @@
+com/zhouyu/service/User.java
+ com.zhouyu.service.User
 com/zhouyu/aspect/ZhouyuAspect.java
  com.zhouyu.aspect.ZhouyuAspect
 com/zhouyu/AppConfig.java

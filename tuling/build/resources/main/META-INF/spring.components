@@ -1,1 +1,2 @@
-#com.zhouyu.service.UserService=org.springframework.stereotype.Component
+#com.zhouyu.service.OrderService=org.springframework.stereotype.Component
+
