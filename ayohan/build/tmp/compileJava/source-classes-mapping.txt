@@ -8,9 +8,9 @@ com/yohan/service/MyClassPathXmlService.java
  com.yohan.service.MyClassPathXmlService
 com/yohan/service/MyService.java
  com.yohan.service.MyService
+geekBang/Spring_demo/class01/demo02/ServiceImpl.java
+ geekBang.Spring_demo.class01.demo02.ServiceImpl
 geekBang/Spring_demo/class01/demo02/Class01Demo02Application.java
  geekBang.Spring_demo.class01.demo02.Class01Demo02Application
 geekBang/Spring_demo/class01/demo01/Class01Demo01Application.java
  geekBang.Spring_demo.class01.demo01.Class01Demo01Application
-geekBang/Spring_demo/class01/demo02/ServiceImpl.java
- geekBang.Spring_demo.class01.demo02.ServiceImpl

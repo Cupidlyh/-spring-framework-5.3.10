@@ -1,8 +1,10 @@
 com/zhouyu/boot/ZhouyuSpringBootApplication.java
  com.zhouyu.boot.ZhouyuSpringBootApplication
-com/zhouyu/controller/ZhouyuController.java
- com.zhouyu.controller.ZhouyuController
-com/zhouyu/boot/ZhouyuSpringApplication.java
- com.zhouyu.boot.ZhouyuSpringApplication
 com/zhouyu/Test.java
  com.zhouyu.Test
+com/zhouyu/boot/ZhouyuSpringApplication.java
+ com.zhouyu.boot.ZhouyuSpringApplication
+com/zhouyu/enums/Season.java
+ com.zhouyu.enums.Season
+com/zhouyu/controller/ZhouyuController.java
+ com.zhouyu.controller.ZhouyuController
