@@ -13,6 +13,11 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
+    // Jackson JSON processor
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    // Optional: Jackson annotations for additional features
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+
     compile(project(":spring-webmvc"))
     compile(project(":spring-core"))
     compile(project(":spring-web"))
