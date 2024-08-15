@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.log.LogFormatUtils;
@@ -159,7 +158,9 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 			contentType = MediaType.APPLICATION_OCTET_STREAM;
 		}
 
+        // 获取参数容器类
 		Class<?> contextClass = parameter.getContainingClass();
+        // 获取目标参数类型
 		Class<T> targetClass = (targetType instanceof Class ? (Class<T>) targetType : null);
 		if (targetClass == null) {
 			ResolvableType resolvableType = ResolvableType.forMethodParameter(parameter);
@@ -178,15 +179,20 @@ public abstract class AbstractMessageConverterMethodArgumentResolver implements 
 				GenericHttpMessageConverter<?> genericConverter =
 						(converter instanceof GenericHttpMessageConverter ? (GenericHttpMessageConverter<?>) converter : null);
 				if (genericConverter != null ? genericConverter.canRead(targetType, contextClass, contentType) :
-						(targetClass != null && converter.canRead(targetClass, contentType))) {
+                    (targetClass != null && converter.canRead(targetClass, contentType))) { // 调用canRead方法判断是否可用
 					if (message.hasBody()) {
+                        // 请求参数不为空
+                        // 前置处理
 						HttpInputMessage msgToUse =
 								getAdvice().beforeBodyRead(message, parameter, targetType, converterType);
+                        // read 方法转换对象
 						body = (genericConverter != null ? genericConverter.read(targetType, contextClass, msgToUse) :
 								((HttpMessageConverter<T>) converter).read(targetClass, msgToUse));
+                        // 后置处理
 						body = getAdvice().afterBodyRead(body, msgToUse, parameter, targetType, converterType);
 					}
 					else {
+                        // 请求参数为空，则通过AOP的advice处理一下空请求体，然后返回
 						body = getAdvice().handleEmptyBody(null, message, parameter, targetType, converterType);
 					}
 					break;

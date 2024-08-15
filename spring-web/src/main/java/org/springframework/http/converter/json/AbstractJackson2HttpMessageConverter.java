@@ -32,6 +32,21 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
+import org.springframework.core.GenericTypeResolver;
+import org.springframework.http.HttpInputMessage;
+import org.springframework.http.HttpOutputMessage;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StreamUtils;
+import org.springframework.util.TypeUtils;
+
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -47,21 +62,6 @@ import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
-
-import org.springframework.core.GenericTypeResolver;
-import org.springframework.http.HttpInputMessage;
-import org.springframework.http.HttpOutputMessage;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.AbstractGenericHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConversionException;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.http.converter.HttpMessageNotWritableException;
-import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StreamUtils;
-import org.springframework.util.TypeUtils;
 
 /**
  * Abstract base class for Jackson based and content type independent
@@ -375,6 +375,9 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 				}
 			}
 			if (isUnicode) {
+                // 通过ObjectMapper将请求json转换为对象
+                // 根据字段名找到属性对象,然后解码,利用反射对对象属性赋值
+                // 枚举底层值获取:com.fasterxml.jackson.databind.deser.std.EnumDeserializer._fromString
 				return objectMapper.readValue(inputMessage.getBody(), javaType);
 			}
 			else {

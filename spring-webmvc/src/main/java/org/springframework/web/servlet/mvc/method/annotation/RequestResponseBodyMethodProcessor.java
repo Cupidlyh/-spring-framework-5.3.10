@@ -110,6 +110,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
+        // 通过判断参数是否带有RequestBody注解来判断，当前参数是否可以解析
 		return parameter.hasParameterAnnotation(RequestBody.class);
 	}
 	// 判断方法或者类上面有没有ResponseBody
@@ -130,6 +131,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception {
 
 		parameter = parameter.nestedIfOptional();
+        // 解析参数
 		Object arg = readWithMessageConverters(webRequest, parameter, parameter.getNestedGenericParameterType());
 		String name = Conventions.getVariableNameForParameter(parameter);
 
